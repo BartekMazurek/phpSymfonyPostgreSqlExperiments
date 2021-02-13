@@ -1,0 +1,43 @@
+version: '2'
+
+volumes:
+    db:
+
+services:
+
+    postgres:
+        container_name: postgres
+        image: postgres:11
+        ports:
+            - 5432:5432
+        env_file:
+            - .env
+        volumes:
+            - db:/var/lib/postgresql/data
+        restart: always
+
+    nginx:
+        container_name: nginx
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www/app
+        restart: always
+        depends_on:
+            - php
+
+    php:
+        container_name: php
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        volumes:
+            - .:/var/www/app
+        env_file:
+            - .env
+        restart: always
+        depends_on:
+            - postgres
