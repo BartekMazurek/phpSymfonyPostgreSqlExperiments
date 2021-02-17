@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(
  *     repositoryClass=ProductCategoryRepository::class
  * )
+ * @ORM\Table(
+ *     name="`product_category`",
+ *     schema="shop"
+ * )
  */
 class ProductCategory
 {
