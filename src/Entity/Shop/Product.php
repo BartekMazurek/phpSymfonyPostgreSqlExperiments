@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     repositoryClass=ProductRepository::class
  * )
  * @ORM\Table(
- *     name="`products`",
+ *     name="`product`",
  *     schema="shop"
  * )
  */
